@@ -1,18 +1,26 @@
-1       setTimeout 給一個非同步callback function
+(1)       
+
 start
 IIFE
 end
 timeout
-2       setTimeout 給一個非同步callback function
+
+Ans: stack 依序執行, setTimeout 在web Api 裡面等待時間到之後送cb 到task queue, 等到stack 空了才從queue送到stack
+(2)      
 start
 IIFE
 end
 timeout
-3
+Ans: stack 依序執行, setTimeout 在web Api 裡面等待時間到之後送cb 到task queue, 等到stack 空了才從queue送到stack
+
+(3)
 foo
 baz
 bar
-4       setTimeout 給timeout一個非同步callback function
+Ans: stack 依序執行
+
+(4)       
 foo
 bar
 baz
+Ans: stack 依序執行, setTimeout 在web Api 裡面等待時間到之後送cb 到task queue, 等到stack 空了才從queue送到stack
