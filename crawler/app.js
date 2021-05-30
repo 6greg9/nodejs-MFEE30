@@ -58,7 +58,7 @@ function fsPromise() {
 //       console.log(response.data.title);
 //     }
 //   });
-async function fsAsync() {
+async function fsAsync(dateTime) {
   try {
     let fsRes = await fsPromise();
     let axiosRes = await axios.get(
@@ -66,16 +66,22 @@ async function fsAsync() {
       {
         params: {
           response: "json",
-          date: "20210523",
+          date: dateTime,
           stockNo: fsRes,
         },
       }
     );
-  } catch(err) {
+    if (axiosRes.data.stat === "OK") {
+      console.log(axiosRes.data.date);
+      console.log(axiosRes.data.title);
+    }else{
+      throw("http error")
+    }
+  } catch (err) {
     console.log(err);
   }
-};
-fsAsync();
+}
+fsAsync(dateTime);
 
 // fs.readFile("stock.txt", "utf8", (err, data) => {
 //   if (err) {
