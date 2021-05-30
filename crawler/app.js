@@ -1,5 +1,14 @@
 const axios = require("axios");
-
+let year = new Date().getFullYear();
+let month = new Date().getMonth() + 1;
+if (month < 10) {
+  month = "0" + month;
+}
+let date = new Date().getDate();
+if (date < 10) {
+  date = "0" + date;
+}
+let dateTime = year + month + date;
 // async function getUser() {
 //   try {
 //     const response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20210523&stockNo=2610');
@@ -33,22 +42,41 @@ function fsPromise() {
     });
   });
 }
-fsPromise()
-  .then((data) => {
-    return axios.get("https://www.twse.com.tw/exchangeReport/STOCK_DAY", {
-      params: {
-        response: "json",
-        date: "20210523",
-        stockNo: data,
-      },
-    });
-  })
-  .then(function (response) {
-    if (response.data.stat === "OK") {
-      console.log(response.data.date);
-      console.log(response.data.title);
-    }
-  });
+// fsPromise()
+//   .then((data) => {
+//     return axios.get("https://www.twse.com.tw/exchangeReport/STOCK_DAY", {
+//       params: {
+//         response: "json",
+//         date: "20210523",
+//         stockNo: data,
+//       },
+//     });
+//   })
+//   .then(function (response) {
+//     if (response.data.stat === "OK") {
+//       console.log(response.data.date);
+//       console.log(response.data.title);
+//     }
+//   });
+async function fsAsync() {
+  try {
+    let fsRes = await fsPromise();
+    let axiosRes = await axios.get(
+      "https://www.twse.com.tw/exchangeReport/STOCK_DAY",
+      {
+        params: {
+          response: "json",
+          date: "20210523",
+          stockNo: fsRes,
+        },
+      }
+    );
+  } catch(err) {
+    console.log(err);
+  }
+};
+fsAsync();
+
 // fs.readFile("stock.txt", "utf8", (err, data) => {
 //   if (err) {
 //     return console.error("讀檔錯誤", err);
