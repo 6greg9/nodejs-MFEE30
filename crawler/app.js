@@ -1,14 +1,16 @@
 const axios = require("axios");
-let year = new Date().getFullYear();
-let month = new Date().getMonth() + 1;
-if (month < 10) {
-  month = "0" + month;
-}
-let date = new Date().getDate();
-if (date < 10) {
-  date = "0" + date;
-}
-let dateTime = year + month + date;
+const moment = require("moment");
+// let year = new Date().getFullYear();
+// let month = new Date().getMonth() + 1;
+// if (month < 10) {
+//   month = "0" + month;
+// }
+// let date = new Date().getDate();
+// if (date < 10) {
+//   date = "0" + date;
+// }
+// let dateTime = year + month + date;
+let dateTime = moment().format("YYYYMMDD");
 // async function getUser() {
 //   try {
 //     const response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20210523&stockNo=2610');
