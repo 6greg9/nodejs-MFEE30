@@ -24,7 +24,7 @@ connection = Promise.promisifyAll(connection);
       `SELECT stock_id FROM stock WHERE stock_id = ${stockCode} limit 1`
     );
 
-    if (stock>0) {
+    if (stock==0) {
       let response = await axios.get(
         `https://www.twse.com.tw/zh/api/codeQuery?query=${stockCode}`
       );
