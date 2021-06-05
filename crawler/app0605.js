@@ -32,7 +32,7 @@ connection = Promise.promisifyAll(connection);
       console.log(stockData);
       
       if (stockData.length > 1) {
-        //TODO: answers[0], answers[1]
+        
         connection.queryAsync(
           `INSERT INTO stock (stock_id, stock_name) VALUES ('${stockData[0]}', '${stockData[1]}')`
         );
