@@ -11,15 +11,7 @@ const moment = require("moment");
 // }
 // let dateTime = year + month + date;
 let dateTime = moment().format("YYYYMMDD");
-// async function getUser() {
-//   try {
-//     const response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20210523&stockNo=2610');
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-// getUser();
+
 // https://www.twse.com.tw/exchangeReport/STOCK_DAY
 // ?response=json
 // &date=20210523
@@ -33,6 +25,10 @@ let dateTime = moment().format("YYYYMMDD");
 // filesystem
 // npm i fs ??? -> 不用
 const fs = require("fs");
+const fsAsyncVer = require("fs/promises");
+const Promise = require("bluebird");
+
+let fsBlueBird = Promise.promisify(fs.readFile);
 
 function fsPromise() {
   return new Promise((resolve, reject) => {
@@ -62,7 +58,9 @@ function fsPromise() {
 //   });
 async function fsAsync(dateTime) {
   try {
-    let fsRes = await fsPromise();
+    //let fsRes = await fsPromise();
+    //let fsRes = await fsAsyncVer.readFile("crawler/stock.txt", "utf8");
+    let fsRes = await fsBlueBird("crawler/stock.txt", "utf8");
     let axiosRes = await axios.get(
       "https://www.twse.com.tw/exchangeReport/STOCK_DAY",
       {
