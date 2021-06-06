@@ -2,13 +2,14 @@ const axios = require("axios");
 const fs = require("fs/promises");
 const mysql = require("mysql");
 const Promise = require("bluebird");
-
-
+require("dotenv").config();
+console.log(process.env.DB_HOST);
 let connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "greg4253058",
-  database: "stock",
+  host: process.env.DB_HOST,
+  
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 //建立連線
 connection = Promise.promisifyAll(connection);
