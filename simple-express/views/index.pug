@@ -1,6 +1,9 @@
 //- extends 擴充
 extends _layout/master 
-
+block scripts
+  //- 專屬 index.pug
+  script(src="/public/javascripts/api.js")
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 block content 
     h1 this is homepage 
     //- table 
