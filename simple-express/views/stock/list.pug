@@ -1,10 +1,14 @@
-
-h1 this is homepage 
-table 
-    tr 
-        th 股票代號
-        th 股票名字
-    each stock in stocks
+extends ../_layout/master 
+block content
+    h1 list
+    table 
         tr 
-            td #{stock.stock_id}
-            td #{stock.stock_name}
+            th 股票代號
+            th 股票名字
+            th link
+        each stock in stocks
+            tr 
+                td #{stock.stock_id}
+                td #{stock.stock_name}
+                td 
+                    a(href=`/stock/${stock.stock_id}`) #{stock.stock_id}連結

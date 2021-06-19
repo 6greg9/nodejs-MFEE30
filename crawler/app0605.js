@@ -50,7 +50,7 @@ const twseMod = require("./twse");
       });
     });
 
-    // await new Promise.all( stockCodeArray.forEach(async (element) => {
+    // await new Promise.all( stockCodeArray.map((element) => {
     //   return getStockPromise(element);
     // }) );
 

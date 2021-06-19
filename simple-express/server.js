@@ -32,9 +32,14 @@ app.use(function (req, res, next) {
 app.get("/", function (req, res) {
   res.render("index");
 });
+
+app.get("/stock/:stockcode", async function (req, res) {
+  let result  = await connection.queryAsync("SELECT date, close_price FROM stock_price where stock_id = ?;",req.params.stockcode);
+  res.render("stock/detail",{stockData:result});
+});
 app.get("/stock", async function (req, res) {
   let result  = await connection.queryAsync("SELECT * FROM stock;");
-  res.render("stock/detail",{stocks:result});
+  res.render("stock/list",{stocks:result});
 });
 app.get("/about", function (req, res) {
   res.send("detail");
