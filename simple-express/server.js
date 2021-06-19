@@ -33,6 +33,9 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+let stockRouter = require("./route/stock");
+app.use("/stock", stockRouter);
+
 app.get("/stock/:stockcode", async function (req, res) {
   let result  = await connection.queryAsync("SELECT date, close_price FROM stock_price where stock_id = ?;",req.params.stockcode);
   res.render("stock/detail",{stockData:result});

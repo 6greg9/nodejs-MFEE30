@@ -1,6 +1,6 @@
 extends ../_layout/master 
 block content
-    h1 list
+    h1 detail
     table 
         tr 
             th 日期
@@ -9,3 +9,6 @@ block content
             tr 
                 td #{stock.date}
                 td #{stock.close_price}
+    .pagination 
+        - for(var p=1; p<=pagination.lastPage; p++)
+            a(href=`/stock/${stock.stock_id}?page=${p}`, class=p==pagination.currentPage?"active":"") #{p}  
